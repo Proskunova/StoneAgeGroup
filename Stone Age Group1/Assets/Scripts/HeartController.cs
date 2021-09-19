@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class HeartController : MonoBehaviour
 {
-    [SerializeField] private Image _heart;
+    public List<Image> heartImages;
+
     [Header("Full")]
     [SerializeField] private Sprite _spriteFull;
     [SerializeField] private Color _colorFull;
@@ -15,27 +16,42 @@ public class HeartController : MonoBehaviour
 
     private void Awake()
     {
-        if (_heart == null) throw new UnityException("_heart == null");
+        ChangeHeart();
     }
 
-    public void SetFull()
+    private void SetFull(Image img)
     {
-        _heart.sprite = _spriteFull;
-        _heart.color = _colorFull;
+        img.sprite = _spriteFull;
+        img.color = _colorFull;
     }
 
-    public void SetEmpty()
+    private void SetEmpty(Image img)
     {
-        _heart.sprite = _spriteEmpty;
-        _heart.color = _colorEmpty;
-
+        img.sprite = _spriteEmpty;
+        img.color = _colorEmpty;
     }
 
+    public void ChangeHeart()
+    {
+        int countHearts = PlayerPrefs.GetInt("PlayerLives", heartImages.Count);
 
+        if(countHearts <= 0 || countHearts > heartImages.Count)
+        {
+            Debug.Log("START NEW GAME");
 
+            countHearts = heartImages.Count;
+        }
 
-
-
-
-
+        for (int i = 0; i < heartImages.Count;  i++)
+        {
+            if( i < countHearts)
+            {
+                SetFull(heartImages[i]);
+            }
+            else
+            {
+                SetEmpty(heartImages[i]);
+            }
+        }
+    }
 }
