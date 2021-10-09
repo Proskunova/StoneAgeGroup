@@ -4,16 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class DeleteAllExample : ScriptableObject
+namespace Proskunova
 {
-    [MenuItem("Examples/Delete All Player Prefs")]
-    static void deleteAllExample()
+    public class DeleteAllExample : ScriptableObject
     {
-        if (EditorUtility.DisplayDialog("Player Prefs Deleter", "Delete all player prefs?", "Yes", "No"))
+        [MenuItem("Examples/Delete All Player Prefs")]
+        static void deleteAllExample()
         {
-            PlayerPrefs.DeleteAll();
+            if (EditorUtility.DisplayDialog("Player Prefs Deleter", "Delete all player prefs?", "Yes", "No"))
+            {
+                PlayerPrefs.DeleteAll();
 
-            Debug.Log("Player Prefs deleted.");
+                Debug.Log("Player Prefs deleted.");
+            }
         }
     }
 }

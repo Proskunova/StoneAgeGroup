@@ -4,31 +4,29 @@ using UnityEngine;
 
 public class YoYoMover : MonoBehaviour
 {
-    [SerializeField] private List<Transform> listPoints;
-    [SerializeField] private float speed;
-    [SerializeField] private Transform moveTarget;
-    [SerializeField] private float distanceDelta;
-    [SerializeField] private int curentIndex;
+    [SerializeField] private List<Transform> _listPoints;
+    [SerializeField] private float _speed;
+    [SerializeField] private Transform _moveTarget;
+    [SerializeField] private float _distanceDelta;
+    [SerializeField] private int _curentIndex;
 
     private void Awake()
     {
-        curentIndex = 0;
-        moveTarget = GetNextPoint();
+        _curentIndex = 0;
+        _moveTarget = GetNextPoint();
     }
 
     private void Update()
     {
-        transform.position = Vector3.MoveTowards(transform.position, moveTarget.position, speed * Time.deltaTime);
-        if (Vector3.Distance(transform.position, moveTarget.position) < distanceDelta) moveTarget = GetNextPoint();
-        
+        transform.position = Vector3.MoveTowards(transform.position, _moveTarget.position, _speed * Time.deltaTime);
+        if (Vector3.Distance(transform.position, _moveTarget.position) < _distanceDelta) _moveTarget = GetNextPoint();
     }
 
     private Transform  GetNextPoint()
     {
-        Transform temp = listPoints[curentIndex];
-        curentIndex++;
-        if (curentIndex >= listPoints.Count) curentIndex = 0;
+        Transform temp = _listPoints[_curentIndex];
+        _curentIndex++;
+        if (_curentIndex >= _listPoints.Count) _curentIndex = 0;
         return temp;
     }
-
 }

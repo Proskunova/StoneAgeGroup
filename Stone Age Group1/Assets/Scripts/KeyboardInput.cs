@@ -5,31 +5,31 @@ using UnityEngine;
 
 public class KeyboardInput : MonoBehaviour
 {
-   [SerializeField] private PlayerController playerMove;
+   [SerializeField] private PlayerController _playerMove;
 
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            playerMove.Jump();
+            _playerMove.Jump();
         }
 
         if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            playerMove.LeftMove();
+            _playerMove.LeftMove();
         }
         else if(Input.GetKeyDown(KeyCode.RightArrow))
         {
-            playerMove.RightMove();
+            _playerMove.RightMove();
         }
         else if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
         {
-            playerMove.StopMove();
+            _playerMove.StopMove();
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerMove.Attack();
+            _playerMove.Attack();
         }
         
     }

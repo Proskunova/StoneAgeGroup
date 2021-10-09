@@ -1,35 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerEat : MonoBehaviour
 {
-    [SerializeField] Indicators indicator;
-    [SerializeField] FoodDataSO data;
+    public static event Action OnEat;
 
-    private AudioSource audioSource;
+    [SerializeField] Indicators _indicator;
+    [SerializeField] FoodDataSO _data;
 
-    private void Start()
+    private AudioSource _audioSource;
+
+    private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
-    public void Eat(FoodType foodType)
+    public void Eat(FoodType FoodTypes)
     {
         int amount = 0;
-        foreach (var item in data.foodDatas)
+        foreach (var item in _data.foodDatas)
         {
-            if(item.foodType == foodType)
+            if(item.FoodTypes == FoodTypes)
             {
-                amount = item.amount;
+                amount = item.Amount;
                 break;
             }
         }
 
-        audioSource.Play();
+        OnEat?.Invoke();
 
-        indicator.ChangeAmount(amount);
+        _audioSource.Play();
 
+        _indicator.ChangeAmount(amount);
     }
-
 }

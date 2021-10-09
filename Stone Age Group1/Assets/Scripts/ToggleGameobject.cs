@@ -7,10 +7,10 @@ using UnityEngine.EventSystems;
 
 public class ToggleGameobject : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] GameObject obj;
+    [SerializeField] GameObject _obj;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        obj.SetActive(!obj.activeInHierarchy);
+        _obj.SetActive(!_obj.activeInHierarchy);
     }
 }

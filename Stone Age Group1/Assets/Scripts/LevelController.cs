@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class LevelController : MonoBehaviour
 {
     public static LevelController instance = null;
-    int sceneIndex;
-    int levelComplete;
+    int _sceneIndex;
+    int _levelComplete;
 
     private void Start()
     {
@@ -15,13 +15,13 @@ public class LevelController : MonoBehaviour
         {
             instance = this;
         }
-        sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        levelComplete = PlayerPrefs.GetInt("LevelComplete");
+        _sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        _levelComplete = PlayerPrefs.GetInt("LevelComplete");
     }
 
     public void IsEndGame()
     {
-        if(sceneIndex == 3)
+        if(_sceneIndex == 3)
         {
             Invoke("LoadMainMenu", 1f);
         }
@@ -33,10 +33,10 @@ public class LevelController : MonoBehaviour
 
     void Nextlevel()
     {
-        if (levelComplete < sceneIndex)
-            PlayerPrefs.SetInt("LevelComplete", sceneIndex);
+        if (_levelComplete < _sceneIndex)
+            PlayerPrefs.SetInt("LevelComplete", _sceneIndex);
 
-        SceneManager.LoadScene(sceneIndex + 1);
+        SceneManager.LoadScene(_sceneIndex + 1);
     }
 
     void LoadMainMenu()

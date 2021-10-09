@@ -4,39 +4,33 @@ using UnityEngine;
 
 public class DropsFood : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> fruitDatas;
-    [SerializeField] private Transform spawnPointFruit;
-    [SerializeField] private ParticleSystem particle;
+    [SerializeField] private List<GameObject> _fruitDatas;
+    [SerializeField] private Transform _spawnPointFruit;
+    [SerializeField] private ParticleSystem _particle;
 
-    private AudioSource audioSource;
-    private GameObject fruit;
-
+    private AudioSource _audioSource;
+    private GameObject _fruit;
 
     private void Awake()
     {
-        if (fruitDatas == null || fruitDatas.Count == 0) throw new UnityException("fruitDatas == null || fruitDatas.Count == 0");
-        if (spawnPointFruit == null) throw new UnityException("spawnPointFruit == null");
-    }
+        if (_fruitDatas == null || _fruitDatas.Count == 0) throw new UnityException("fruitDatas == null || fruitDatas.Count == 0");
+        if (_spawnPointFruit == null) throw new UnityException("spawnPointFruit == null");
 
-    private void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (PlayerController.GetState != PlayerState.Attack) return;
 
-        audioSource.Play();
-        particle.Play(true);
+        _audioSource.Play();
+        _particle.Play(true);
 
-        if (fruit != null && fruit.activeInHierarchy) return;
+        if (_fruit != null && _fruit.activeInHierarchy) return;
 
-        int randomIndex = Random.Range(0, fruitDatas.Count);
-        GameObject randomFruit = fruitDatas[randomIndex];
+        int randomIndex = Random.Range(0, _fruitDatas.Count);
+        GameObject randomFruit = _fruitDatas[randomIndex];
 
-        fruit = Instantiate(randomFruit, spawnPointFruit.position, Quaternion.identity);
-        
+        _fruit = Instantiate(randomFruit, _spawnPointFruit.position, Quaternion.identity);
     }
-
 }

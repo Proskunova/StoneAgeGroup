@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class TriggerZoneController : MonoBehaviour
 {
-    [SerializeField] private Transform startPoint;
-    [SerializeField] private Indicators indicators;
+    [SerializeField] private Transform _startPoint;
+    [SerializeField] private Indicators _indicators;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag != "Player") return;
 
-        collision.transform.position = startPoint.position;
-        indicators.LifePlayer();
+        collision.transform.position = _startPoint.position;
+        _indicators.LifePlayer();
     }
 }

@@ -18,42 +18,41 @@ public enum FoodType
 
 public class Indicators : MonoBehaviour
 {
-    public Image foodBar;
-    public float foodAmount;
-    public float secondsToEmptyFood;
+    [SerializeField] HeartController _heartController;
+    [SerializeField] Transform _startPoint;
+    [SerializeField] GameObject _player;
+    [SerializeField] GameOver _gameOver;
 
-    private int maxFoodAmount = 100;
+    private int _maxFoodAmount = 100;
 
-    [SerializeField] HeartController heartController;
-    [SerializeField] Transform startPoint;
-    [SerializeField] GameObject player;
-    [SerializeField] GameOver gameOver;
+    public Image FoodBar;
+    public float FoodAmount;
+    public float SecondsToEmptyFood;
     
     void Start()
     {
-        foodBar.fillAmount = foodAmount / maxFoodAmount;
+        FoodBar.fillAmount = FoodAmount / _maxFoodAmount;
     }
 
     void Update()
     {
-        if(foodAmount > 0)
+        if(FoodAmount > 0)
         {
-            foodAmount -= maxFoodAmount / secondsToEmptyFood * Time.deltaTime;
-            foodBar.fillAmount = foodAmount / maxFoodAmount;
+            FoodAmount -= _maxFoodAmount / SecondsToEmptyFood * Time.deltaTime;
+            FoodBar.fillAmount = FoodAmount / _maxFoodAmount;
         }
-        if(foodAmount <= 0)
+        if(FoodAmount <= 0)
         {
-            foodAmount = maxFoodAmount;
+            FoodAmount = _maxFoodAmount;
             LifePlayer();
-            player.transform.position = startPoint.position;
-
+            _player.transform.position = _startPoint.position;
         }
     }
 
     public void LifePlayer()
     {
         print("LifePlayer");
-        int countHearts = PlayerPrefs.GetInt("PlayerLives", heartController.heartImages.Count);
+        int countHearts = PlayerPrefs.GetInt("PlayerLives", _heartController.heartImages.Count);
         Debug.Log(countHearts);
 
         countHearts--;
@@ -62,17 +61,16 @@ public class Indicators : MonoBehaviour
 
         if (countHearts <= 0)
         {
-            gameOver.GameOverScreen();
+            _gameOver.GameOverScreen();
             return;
         }
 
-        heartController.ChangeHeart();
-
+        _heartController.ChangeHeart();
     }
+
     public void ChangeAmount(int v)
     {
-        foodAmount += v;
-        if (foodAmount > maxFoodAmount) foodAmount = maxFoodAmount;
+        FoodAmount += v;
+        if (FoodAmount > _maxFoodAmount) FoodAmount = _maxFoodAmount;
     }
-
 }

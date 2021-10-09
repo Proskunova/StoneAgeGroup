@@ -4875,13 +4875,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95108990e47d6848b71593862e21a18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fruitDatas:
+  _fruitDatas:
   - {fileID: 1157183145678720522, guid: 244544ca12f6cf34f8d9be60498805af, type: 3}
   - {fileID: 2690943620123963724, guid: ae74190b9c845a04c9ea6f943de8a790, type: 3}
-  - {fileID: 5830008243039435941, guid: c3361f37d70766a4a8ee62c6cdc2d0f2, type: 3}
+  - {fileID: 4190804053393202133, guid: ed64e97e27a7c4b49909c7f2278f5d4c, type: 3}
+  - {fileID: 7670765593462422811, guid: 76327709ff491754a93de033ceea8f13, type: 3}
   - {fileID: 1245381664642563814, guid: ea49d2d9630541a47a4525f8323fa152, type: 3}
-  spawnPointFruit: {fileID: 0}
-  particle: {fileID: 1538137684029351892}
+  _spawnPointFruit: {fileID: 0}
+  _particle: {fileID: 1538137684029351892}
 --- !u!82 &7910570840652723668
 AudioSource:
   m_ObjectHideFlags: 0

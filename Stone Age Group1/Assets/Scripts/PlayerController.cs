@@ -9,7 +9,6 @@ public enum PlayerState
     MoveRighr,
     Jump,
     Attack
-
 }
 
 [RequireComponent(typeof (Rigidbody2D))]
@@ -18,76 +17,75 @@ public class PlayerController : MonoBehaviour
     public static PlayerState GetState { get; private set; }
 
     [Header("Player")]
-    [SerializeField] private float playerSpeed = 200f;
-    [SerializeField] private float playerJumpForce = 7.2f;
-    [SerializeField] private Animator animator;
-    [SerializeField] private PlayerState currentState;
+    [SerializeField] private float _playerSpeed = 200f;
+    [SerializeField] private float _playerJumpForce = 7.2f;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private PlayerState _currentState;
 
     Quaternion rotationLeft = Quaternion.Euler(new Vector3(0, 180, 0));
     Quaternion rotationRight = Quaternion.Euler(Vector3.zero);
 
-    private float currentPlayerSpeed;
-    private Rigidbody2D rb;
-    public static bool groundCheck;
+    private float _currentPlayerSpeed;
+    private Rigidbody2D _rb;
 
+    public static bool GroundCheck;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(currentPlayerSpeed * Time.deltaTime, rb.velocity.y);
+        _rb.velocity = new Vector2(_currentPlayerSpeed * Time.deltaTime, _rb.velocity.y);
     }
 
     public void RightMove()
     {
-        currentPlayerSpeed = playerSpeed;
-        animator.transform.rotation = rotationRight;
-        animator.SetBool("IsWalk", true);
+        _currentPlayerSpeed = _playerSpeed;
+        _animator.transform.rotation = rotationRight;
+        _animator.SetBool("IsWalk", true);
         SetNewState(PlayerState.MoveRighr);
-
     }
+
     public void LeftMove()
     {
-        currentPlayerSpeed = - playerSpeed;
-        animator.transform.rotation = rotationLeft;
-        animator.SetBool("IsWalk", true);
+        _currentPlayerSpeed = - _playerSpeed;
+        _animator.transform.rotation = rotationLeft;
+        _animator.SetBool("IsWalk", true);
         SetNewState(PlayerState.MoveLeft);
-
     }
   
     public void StopMove()
     {
-        currentPlayerSpeed = 0f;
-        animator.SetBool("IsWalk", false);
+        _currentPlayerSpeed = 0f;
+        _animator.SetBool("IsWalk", false);
         SetNewState(PlayerState.Idle);
     }
 
     public void Jump()
     {
-        if (groundCheck)
+        if (GroundCheck)
         {
-            rb.velocity = new Vector2(rb.velocity.x, playerJumpForce);
-            groundCheck = false;
-            animator.SetTrigger("Jump");
+            _rb.velocity = new Vector2(_rb.velocity.x, _playerJumpForce);
+            GroundCheck = false;
+            _animator.SetTrigger("Jump");
             SetNewState(PlayerState.Jump);
         }
     }
     
     public void Attack()
     {
-        if (groundCheck)
+        if (GroundCheck)
         {
             StopMove();
-            animator.SetTrigger("Attack");
+            _animator.SetTrigger("Attack");
             SetNewState(PlayerState.Attack);
         }
     }
 
     private void SetNewState(PlayerState newState)
     {
-        GetState = currentState = newState;
+        GetState = _currentState = newState;
     }
 }

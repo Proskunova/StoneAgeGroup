@@ -7,29 +7,28 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] Button level2B;
-    [SerializeField] Button level3B;
+    [SerializeField] Button _level2B;
+    [SerializeField] Button _level3B;
 
-    int levelComplete;
-
+    int _levelComplete;
 
     private void Start()
     {
-        levelComplete = PlayerPrefs.GetInt("LevelComplete", 0);
+        _levelComplete = PlayerPrefs.GetInt("LevelComplete", 0);
 
-        level2B.gameObject.SetActive(false);
-        level3B.gameObject.SetActive(false);
-        level2B.transform.parent.gameObject.SetActive(false);
+        _level2B.gameObject.SetActive(false);
+        _level3B.gameObject.SetActive(false);
+        _level2B.transform.parent.gameObject.SetActive(false);
 
-        switch(levelComplete)
+        switch(_levelComplete)
         {
             case 1:
-                level2B.gameObject.SetActive(true);
+                _level2B.gameObject.SetActive(true);
                 break;
 
             case 2:
-                level2B.gameObject.SetActive(true);
-                level3B.gameObject.SetActive(true);
+                _level2B.gameObject.SetActive(true);
+                _level3B.gameObject.SetActive(true);
                 break;
 
             default:

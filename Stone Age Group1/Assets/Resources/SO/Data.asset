@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: Data
   m_EditorClassIdentifier: 
   foodDatas:
-  - foodType: 0
-    amount: 8
-  - foodType: 1
-    amount: 9
-  - foodType: 3
-    amount: -20
-  - foodType: 2
-    amount: 6
-  - foodType: 4
-    amount: 9
-  - foodType: 5
-    amount: 20
-  - foodType: 6
-    amount: 8
-  - foodType: 7
-    amount: 8
+  - FoodTypes: 0
+    Amount: 10
+  - FoodTypes: 1
+    Amount: 15
+  - FoodTypes: 2
+    Amount: 10
+  - FoodTypes: 4
+    Amount: 15
+  - FoodTypes: 6
+    Amount: 10
+  - FoodTypes: 7
+    Amount: 12
+  - FoodTypes: 3
+    Amount: -15
+  - FoodTypes: 5
+    Amount: 20

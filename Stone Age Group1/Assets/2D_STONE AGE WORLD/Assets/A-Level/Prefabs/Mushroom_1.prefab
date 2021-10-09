@@ -90,7 +90,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4420608486958724}
   - component: {fileID: 212918784027670524}
-  - component: {fileID: 7012936562870189649}
   m_Layer: 0
   m_Name: Mushroom_1
   m_TagString: Untagged
@@ -162,16 +161,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7012936562870189649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1154799034386890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45a9a8f3e3c485446a6ddb7fb611c017, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  food: 3

@@ -9,14 +9,9 @@ public class FoodDataSO : ScriptableObject
 
   public class FoodData
     {
-        public FoodType foodType;
-        public int amount;
-
+        public FoodType FoodTypes;
+        public int Amount;
     }
 
     public List<FoodData> foodDatas;
-
-
-
-
 }

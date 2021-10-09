@@ -8,6 +8,4 @@ public class Nextlevel : MonoBehaviour
     {
         LevelController.instance.IsEndGame();
     }
-
-
 }
