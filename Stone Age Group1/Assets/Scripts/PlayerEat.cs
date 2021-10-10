@@ -7,7 +7,7 @@ namespace Game
 {
     public class PlayerEat : MonoBehaviour
     {
-        public static event Action OnEat;
+        public static event Action<int> OnEat;
 
         [SerializeField] Indicators _indicator;
         [SerializeField] FoodDataSO _data;
@@ -31,11 +31,22 @@ namespace Game
                 }
             }
 
-            OnEat?.Invoke();
+            OnEat?.Invoke(1);
 
             _audioSource.Play();
 
             _indicator.ChangeAmount(amount);
+        }
+
+        public void Eat(AFruit fruit)
+        {
+            int scorePoints = fruit.GetPoints();
+            
+            OnEat?.Invoke(scorePoints);
+
+            _audioSource.Play();
+
+            _indicator.ChangeAmount(fruit.FoodAmount);
         }
     }
 }
