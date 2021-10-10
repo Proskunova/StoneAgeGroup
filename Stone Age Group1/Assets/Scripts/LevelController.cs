@@ -3,44 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelController : MonoBehaviour
+namespace Game
 {
-    public static LevelController instance = null;
-    int _sceneIndex;
-    int _levelComplete;
-
-    private void Start()
+    public class LevelController : MonoBehaviour
     {
-        if(instance == null)
+        public static LevelController instance = null;
+        int _sceneIndex;
+        int _levelComplete;
+
+        private void Start()
         {
-            instance = this;
+            if (instance == null)
+            {
+                instance = this;
+            }
+            _sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            _levelComplete = PlayerPrefs.GetInt("LevelComplete");
         }
-        _sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        _levelComplete = PlayerPrefs.GetInt("LevelComplete");
-    }
 
-    public void IsEndGame()
-    {
-        if(_sceneIndex == 3)
+        public void IsEndGame()
         {
-            Invoke("LoadMainMenu", 1f);
+            if (_sceneIndex == 3)
+            {
+                Invoke("LoadMainMenu", 1f);
+            }
+            else
+            {
+                Invoke("Nextlevel", 1f);
+            }
         }
-        else
+
+        void Nextlevel()
         {
-            Invoke("Nextlevel", 1f);  
+            if (_levelComplete < _sceneIndex)
+                PlayerPrefs.SetInt("LevelComplete", _sceneIndex);
+
+            SceneManager.LoadScene(_sceneIndex + 1);
         }
-    }
 
-    void Nextlevel()
-    {
-        if (_levelComplete < _sceneIndex)
-            PlayerPrefs.SetInt("LevelComplete", _sceneIndex);
-
-        SceneManager.LoadScene(_sceneIndex + 1);
-    }
-
-    void LoadMainMenu()
-    {
-        SceneManager.LoadScene("Menu");
+        void LoadMainMenu()
+        {
+            SceneManager.LoadScene("Menu");
+        }
     }
 }
+

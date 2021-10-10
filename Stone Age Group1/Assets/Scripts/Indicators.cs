@@ -3,74 +3,79 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum FoodType
-{  
-    Superbanana = 8,
-    Banana = 0,
-    Orange = 1, 
-    Coconut = 2, 
-    Mushroom = 3, 
-    Pineapple = 4,
-    Grape = 5, 
-    Lemon = 6, 
-    Cherry = 7
-}
-
-public class Indicators : MonoBehaviour
+namespace Game
 {
-    [SerializeField] HeartController _heartController;
-    [SerializeField] Transform _startPoint;
-    [SerializeField] GameObject _player;
-    [SerializeField] GameOver _gameOver;
-
-    private int _maxFoodAmount = 100;
-
-    public Image FoodBar;
-    public float FoodAmount;
-    public float SecondsToEmptyFood;
-    
-    void Start()
+    public enum FoodType
     {
-        FoodBar.fillAmount = FoodAmount / _maxFoodAmount;
+        Superbanana = 8,
+        Banana = 0,
+        Orange = 1,
+        Coconut = 2,
+        Mushroom = 3,
+        Pineapple = 4,
+        Grape = 5,
+        Lemon = 6,
+        Cherry = 7
     }
 
-    void Update()
+    public class Indicators : MonoBehaviour
     {
-        if(FoodAmount > 0)
+        [SerializeField] HeartController _heartController;
+        [SerializeField] Transform _startPoint;
+        [SerializeField] GameObject _player;
+        [SerializeField] GameOver _gameOver;
+
+        private int _maxFoodAmount = 100;
+
+        public Image FoodBar;
+        public float FoodAmount;
+        public float SecondsToEmptyFood;
+
+        void Start()
         {
-            FoodAmount -= _maxFoodAmount / SecondsToEmptyFood * Time.deltaTime;
             FoodBar.fillAmount = FoodAmount / _maxFoodAmount;
         }
-        if(FoodAmount <= 0)
+
+        void Update()
         {
-            FoodAmount = _maxFoodAmount;
-            LifePlayer();
-            _player.transform.position = _startPoint.position;
-        }
-    }
-
-    public void LifePlayer()
-    {
-        print("LifePlayer");
-        int countHearts = PlayerPrefs.GetInt("PlayerLives", _heartController.heartImages.Count);
-        Debug.Log(countHearts);
-
-        countHearts--;
-
-        PlayerPrefs.SetInt("PlayerLives", countHearts);
-
-        if (countHearts <= 0)
-        {
-            _gameOver.GameOverScreen();
-            return;
+            if (FoodAmount > 0)
+            {
+                FoodAmount -= _maxFoodAmount / SecondsToEmptyFood * Time.deltaTime;
+                FoodBar.fillAmount = FoodAmount / _maxFoodAmount;
+            }
+            if (FoodAmount <= 0)
+            {
+                FoodAmount = _maxFoodAmount;
+                LifePlayer();
+                _player.transform.position = _startPoint.position;
+            }
         }
 
-        _heartController.ChangeHeart();
-    }
+        public void LifePlayer()
+        {
+            print("LifePlayer");
+            int countHearts = PlayerPrefs.GetInt("PlayerLives", _heartController.heartImages.Count);
+            Debug.Log(countHearts);
 
-    public void ChangeAmount(int v)
-    {
-        FoodAmount += v;
-        if (FoodAmount > _maxFoodAmount) FoodAmount = _maxFoodAmount;
+            countHearts--;
+
+            PlayerPrefs.SetInt("PlayerLives", countHearts);
+
+            if (countHearts <= 0)
+            {
+                _gameOver.GameOverScreen();
+                return;
+            }
+
+            _heartController.ChangeHeart();
+        }
+
+        public void ChangeAmount(int v)
+        {
+            FoodAmount += v;
+            if (FoodAmount > _maxFoodAmount) FoodAmount = _maxFoodAmount;
+        }
     }
 }
+
+

@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodController : MonoBehaviour
+namespace Game
 {
-    [SerializeField] FoodType _food;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class FoodController : MonoBehaviour
     {
-        if (collision.gameObject.CompareTag("Player"))
+        [SerializeField] FoodType _food;
+
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            collision.gameObject.GetComponent<PlayerEat>().Eat(_food);
-            gameObject.SetActive(false);
-        }  
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                collision.gameObject.GetComponent<PlayerEat>().Eat(_food);
+                gameObject.SetActive(false);
+            }
+        }
     }
 }
+
+

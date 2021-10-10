@@ -2,35 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DropsFood : MonoBehaviour
+namespace Game
 {
-    [SerializeField] private List<GameObject> _fruitDatas;
-    [SerializeField] private Transform _spawnPointFruit;
-    [SerializeField] private ParticleSystem _particle;
-
-    private AudioSource _audioSource;
-    private GameObject _fruit;
-
-    private void Awake()
+    public class DropsFood : MonoBehaviour
     {
-        if (_fruitDatas == null || _fruitDatas.Count == 0) throw new UnityException("fruitDatas == null || fruitDatas.Count == 0");
-        if (_spawnPointFruit == null) throw new UnityException("spawnPointFruit == null");
+        [SerializeField] private List<GameObject> _fruitDatas;
+        [SerializeField] private Transform _spawnPointFruit;
+        [SerializeField] private ParticleSystem _particle;
 
-        _audioSource = GetComponent<AudioSource>();
-    }
+        private AudioSource _audioSource;
+        private GameObject _fruit;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (PlayerController.GetState != PlayerState.Attack) return;
+        private void Awake()
+        {
+            if (_fruitDatas == null || _fruitDatas.Count == 0) throw new UnityException("fruitDatas == null || fruitDatas.Count == 0");
+            if (_spawnPointFruit == null) throw new UnityException("spawnPointFruit == null");
 
-        _audioSource.Play();
-        _particle.Play(true);
+            _audioSource = GetComponent<AudioSource>();
+        }
 
-        if (_fruit != null && _fruit.activeInHierarchy) return;
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (PlayerController.GetState != PlayerState.Attack) return;
 
-        int randomIndex = Random.Range(0, _fruitDatas.Count);
-        GameObject randomFruit = _fruitDatas[randomIndex];
+            _audioSource.Play();
+            _particle.Play(true);
 
-        _fruit = Instantiate(randomFruit, _spawnPointFruit.position, Quaternion.identity);
+            if (_fruit != null && _fruit.activeInHierarchy) return;
+
+            int randomIndex = Random.Range(0, _fruitDatas.Count);
+            GameObject randomFruit = _fruitDatas[randomIndex];
+
+            _fruit = Instantiate(randomFruit, _spawnPointFruit.position, Quaternion.identity);
+        }
     }
 }

@@ -3,55 +3,60 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HeartController : MonoBehaviour
+namespace Game
 {
-    public List<Image> heartImages;
-
-    [Header("Full")]
-    [SerializeField] private Sprite _spriteFull;
-    [SerializeField] private Color _colorFull;
-    [Header("Empty")]
-    [SerializeField] private Sprite _spriteEmpty;
-    [SerializeField] private Color _colorEmpty;
-
-    private void Awake()
+    public class HeartController : MonoBehaviour
     {
-        ChangeHeart();
-    }
+        public List<Image> heartImages;
 
-    private void SetFull(Image img)
-    {
-        img.sprite = _spriteFull;
-        img.color = _colorFull;
-    }
+        [Header("Full")]
+        [SerializeField] private Sprite _spriteFull;
+        [SerializeField] private Color _colorFull;
+        [Header("Empty")]
+        [SerializeField] private Sprite _spriteEmpty;
+        [SerializeField] private Color _colorEmpty;
 
-    private void SetEmpty(Image img)
-    {
-        img.sprite = _spriteEmpty;
-        img.color = _colorEmpty;
-    }
-
-    public void ChangeHeart()
-    {
-        int countHearts = PlayerPrefs.GetInt("PlayerLives", heartImages.Count);
-
-        if(countHearts <= 0 || countHearts > heartImages.Count)
+        private void Awake()
         {
-            Debug.Log("START NEW GAME");
-
-            countHearts = heartImages.Count;
+            ChangeHeart();
         }
 
-        for (int i = 0; i < heartImages.Count;  i++)
+        private void SetFull(Image img)
         {
-            if( i < countHearts)
+            img.sprite = _spriteFull;
+            img.color = _colorFull;
+        }
+
+        private void SetEmpty(Image img)
+        {
+            img.sprite = _spriteEmpty;
+            img.color = _colorEmpty;
+        }
+
+        public void ChangeHeart()
+        {
+            int countHearts = PlayerPrefs.GetInt("PlayerLives", heartImages.Count);
+
+            if (countHearts <= 0 || countHearts > heartImages.Count)
             {
-                SetFull(heartImages[i]);
+                Debug.Log("START NEW GAME");
+
+                countHearts = heartImages.Count;
             }
-            else
+
+            for (int i = 0; i < heartImages.Count; i++)
             {
-                SetEmpty(heartImages[i]);
+                if (i < countHearts)
+                {
+                    SetFull(heartImages[i]);
+                }
+                else
+                {
+                    SetEmpty(heartImages[i]);
+                }
             }
         }
     }
 }
+
+

@@ -2,19 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroundCheck : MonoBehaviour
+namespace Game
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class GroundCheck : MonoBehaviour
     {
-        if (collision.gameObject.layer != 8) return;
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.layer != 8) return;
 
-        PlayerController.GroundCheck = true;
-    }
+            PlayerController.GroundCheck = true;
+        }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.layer != 8) return;
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.layer != 8) return;
 
-        PlayerController.GroundCheck = false;
+            PlayerController.GroundCheck = false;
+        }
     }
 }
+

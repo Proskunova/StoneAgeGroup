@@ -4,24 +4,28 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameOver : MonoBehaviour
+namespace Game
 {
-    public void GameOverScreen()
+    public class GameOver : MonoBehaviour
     {
-        print("GameOverScreen");
+        public void GameOverScreen()
+        {
+            print("GameOverScreen");
 
-        gameObject.SetActive(true);
-    }
+            gameObject.SetActive(true);
+        }
 
-    public void TryAgainButton()
-    {
-        PlayerPrefs.DeleteKey("PlayerLives");
+        public void TryAgainButton()
+        {
+            PlayerPrefs.DeleteKey("PlayerLives");
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 
-    public void MainMenuButton()
-    {
-        SceneManager.LoadScene("Menu");
+        public void MainMenuButton()
+        {
+            SceneManager.LoadScene("Menu");
+        }
     }
 }
+

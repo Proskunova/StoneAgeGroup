@@ -3,25 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreCount : MonoBehaviour
+namespace Game
 {
-    public int _score;
-    public Text _textScore;
-
-    private void OnEnable()
+    public class ScoreCount : MonoBehaviour
     {
-        PlayerEat.OnEat += ScoreCounts;      
-    }
+        [SerializeField] private int _score;
+        [SerializeField] private Text _textScore;
 
-    private void OnDisable()
-    {
-        PlayerEat.OnEat -= ScoreCounts;
-    }
+        private void OnEnable()
+        {
+            PlayerEat.OnEat += ScoreCounts;
+        }
 
-    private void ScoreCounts()
-    {
-        _score++;
-        _textScore.text = _score.ToString();
-        Debug.Log(_score);
+        private void OnDisable()
+        {
+            PlayerEat.OnEat -= ScoreCounts;
+        }
+
+        private void ScoreCounts()
+        {
+            _score++;
+            _textScore.text = _score.ToString();
+            Debug.Log(_score);
+        }
     }
 }
+
+

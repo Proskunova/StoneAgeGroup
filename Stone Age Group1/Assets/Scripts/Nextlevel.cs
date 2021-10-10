@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Nextlevel : MonoBehaviour
+namespace Game
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class Nextlevel : MonoBehaviour
     {
-        LevelController.instance.IsEndGame();
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            LevelController.instance.IsEndGame();
+        }
     }
 }

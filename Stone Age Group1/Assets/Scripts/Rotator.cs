@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rotator : MonoBehaviour
+namespace Game
 {
-    [SerializeField] private Vector3 _vector3;
-
-    private void Update()
+    public class Rotator : MonoBehaviour
     {
-        transform.Rotate(_vector3 * Time.deltaTime);
+        [SerializeField] private Vector3 _vector3;
+
+        private void Update()
+        {
+            transform.Rotate(_vector3 * Time.deltaTime);
+        }
     }
 }
+

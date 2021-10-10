@@ -1323,9 +1323,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _heartController: {fileID: 6431104330302760434}
   _startPoint: {fileID: 0}
-  _player: {fileID: 7040916723639798224, guid: ff5607b831183ab41abfdeab8608dd09, type: 3}
+  _player: {fileID: 616609615969426196, guid: 8b8d80b86c878f8459ec86caf3067683, type: 3}
   _gameOver: {fileID: 6431104329909263808}
-  FoodBar: {fileID: 6431104330302760439}
+  FoodBar: {fileID: 6431104330117429962}
   FoodAmount: 100
   SecondsToEmptyFood: 60
 --- !u!114 &6431104330302760434

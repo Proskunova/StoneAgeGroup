@@ -2,16 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerZoneController : MonoBehaviour
+namespace Game
 {
-    [SerializeField] private Transform _startPoint;
-    [SerializeField] private Indicators _indicators;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class TriggerZoneController : MonoBehaviour
     {
-        if (collision.gameObject.tag != "Player") return;
+        [SerializeField] private Transform _startPoint;
+        [SerializeField] private Indicators _indicators;
 
-        collision.transform.position = _startPoint.position;
-        _indicators.LifePlayer();
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.tag != "Player") return;
+
+            collision.transform.position = _startPoint.position;
+            _indicators.LifePlayer();
+        }
     }
 }
+

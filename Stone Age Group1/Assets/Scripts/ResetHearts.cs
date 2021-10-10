@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResetHearts : MonoBehaviour
+namespace Game
 {
-    public void ResetHeartsCount()
+    public class ResetHearts : MonoBehaviour
     {
-        PlayerPrefs.DeleteKey("PlayerLives");
+        public void ResetHeartsCount()
+        {
+            PlayerPrefs.DeleteKey("PlayerLives");
+        }
     }
 }
+

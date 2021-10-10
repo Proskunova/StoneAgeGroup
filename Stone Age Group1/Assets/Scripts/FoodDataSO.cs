@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Data", menuName = "SO/FoodData")]
-public class FoodDataSO : ScriptableObject
+namespace Game
 {
-  [System.Serializable]
-
-  public class FoodData
+    [CreateAssetMenu(fileName = "Data", menuName = "SO/FoodData")]
+    public class FoodDataSO : ScriptableObject
     {
-        public FoodType FoodTypes;
-        public int Amount;
-    }
+        [System.Serializable]
 
-    public List<FoodData> foodDatas;
+        public class FoodData
+        {
+            public FoodType FoodTypes;
+            public int Amount;
+        }
+
+        public List<FoodData> foodDatas;
+    }
 }
+
+

@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodDatas:
   - FoodTypes: 0
-    Amount: 10
+    Amount: 7
   - FoodTypes: 1
-    Amount: 15
+    Amount: 8
   - FoodTypes: 2
-    Amount: 10
+    Amount: 9
   - FoodTypes: 4
-    Amount: 15
+    Amount: 7
   - FoodTypes: 6
-    Amount: 10
+    Amount: 8
   - FoodTypes: 7
-    Amount: 12
+    Amount: 7
   - FoodTypes: 3
-    Amount: -15
+    Amount: -20
   - FoodTypes: 5
     Amount: 20

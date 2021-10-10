@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using UnityEngine.SceneManagement;
 
-public class ExitToMenu : MonoBehaviour
+namespace Menu
 {
-    public void ExitToMenuScene()
+    public class ExitToMenu : MonoBehaviour
     {
-        SceneManager.LoadScene(0);
+        public void ExitToMenuScene()
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }
+
+

@@ -2,90 +2,93 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PlayerState
+namespace Game
 {
-    Idle,
-    MoveLeft,
-    MoveRighr,
-    Jump,
-    Attack
-}
-
-[RequireComponent(typeof (Rigidbody2D))]
-public class PlayerController : MonoBehaviour
-{
-    public static PlayerState GetState { get; private set; }
-
-    [Header("Player")]
-    [SerializeField] private float _playerSpeed = 200f;
-    [SerializeField] private float _playerJumpForce = 7.2f;
-    [SerializeField] private Animator _animator;
-    [SerializeField] private PlayerState _currentState;
-
-    Quaternion rotationLeft = Quaternion.Euler(new Vector3(0, 180, 0));
-    Quaternion rotationRight = Quaternion.Euler(Vector3.zero);
-
-    private float _currentPlayerSpeed;
-    private Rigidbody2D _rb;
-
-    public static bool GroundCheck;
-
-    private void Awake()
+    public enum PlayerState
     {
-        _rb = GetComponent<Rigidbody2D>();
+        Idle,
+        MoveLeft,
+        MoveRighr,
+        Jump,
+        Attack
     }
 
-    private void FixedUpdate()
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class PlayerController : MonoBehaviour
     {
-        _rb.velocity = new Vector2(_currentPlayerSpeed * Time.deltaTime, _rb.velocity.y);
-    }
+        public static PlayerState GetState { get; private set; }
 
-    public void RightMove()
-    {
-        _currentPlayerSpeed = _playerSpeed;
-        _animator.transform.rotation = rotationRight;
-        _animator.SetBool("IsWalk", true);
-        SetNewState(PlayerState.MoveRighr);
-    }
+        [Header("Player")]
+        [SerializeField] private float _playerSpeed = 200f;
+        [SerializeField] private float _playerJumpForce = 7.2f;
+        [SerializeField] private Animator _animator;
+        [SerializeField] private PlayerState _currentState;
 
-    public void LeftMove()
-    {
-        _currentPlayerSpeed = - _playerSpeed;
-        _animator.transform.rotation = rotationLeft;
-        _animator.SetBool("IsWalk", true);
-        SetNewState(PlayerState.MoveLeft);
-    }
-  
-    public void StopMove()
-    {
-        _currentPlayerSpeed = 0f;
-        _animator.SetBool("IsWalk", false);
-        SetNewState(PlayerState.Idle);
-    }
+        Quaternion rotationLeft = Quaternion.Euler(new Vector3(0, 180, 0));
+        Quaternion rotationRight = Quaternion.Euler(Vector3.zero);
 
-    public void Jump()
-    {
-        if (GroundCheck)
+        private float _currentPlayerSpeed;
+        private Rigidbody2D _rb;
+
+        public static bool GroundCheck;
+
+        private void Awake()
         {
-            _rb.velocity = new Vector2(_rb.velocity.x, _playerJumpForce);
-            GroundCheck = false;
-            _animator.SetTrigger("Jump");
-            SetNewState(PlayerState.Jump);
+            _rb = GetComponent<Rigidbody2D>();
         }
-    }
-    
-    public void Attack()
-    {
-        if (GroundCheck)
-        {
-            StopMove();
-            _animator.SetTrigger("Attack");
-            SetNewState(PlayerState.Attack);
-        }
-    }
 
-    private void SetNewState(PlayerState newState)
-    {
-        GetState = _currentState = newState;
+        private void FixedUpdate()
+        {
+            _rb.velocity = new Vector2(_currentPlayerSpeed * Time.deltaTime, _rb.velocity.y);
+        }
+
+        public void RightMove()
+        {
+            _currentPlayerSpeed = _playerSpeed;
+            _animator.transform.rotation = rotationRight;
+            _animator.SetBool("IsWalk", true);
+            SetNewState(PlayerState.MoveRighr);
+        }
+
+        public void LeftMove()
+        {
+            _currentPlayerSpeed = -_playerSpeed;
+            _animator.transform.rotation = rotationLeft;
+            _animator.SetBool("IsWalk", true);
+            SetNewState(PlayerState.MoveLeft);
+        }
+
+        public void StopMove()
+        {
+            _currentPlayerSpeed = 0f;
+            _animator.SetBool("IsWalk", false);
+            SetNewState(PlayerState.Idle);
+        }
+
+        public void Jump()
+        {
+            if (GroundCheck)
+            {
+                _rb.velocity = new Vector2(_rb.velocity.x, _playerJumpForce);
+                GroundCheck = false;
+                _animator.SetTrigger("Jump");
+                SetNewState(PlayerState.Jump);
+            }
+        }
+
+        public void Attack()
+        {
+            if (GroundCheck)
+            {
+                StopMove();
+                _animator.SetTrigger("Attack");
+                SetNewState(PlayerState.Attack);
+            }
+        }
+
+        private void SetNewState(PlayerState newState)
+        {
+            GetState = _currentState = newState;
+        }
     }
 }

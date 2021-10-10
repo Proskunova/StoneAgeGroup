@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using UnityEngine.EventSystems;
 
-
-public class ToggleGameobject : MonoBehaviour, IPointerClickHandler
+namespace Game
 {
-    [SerializeField] GameObject _obj;
-
-    public void OnPointerClick(PointerEventData eventData)
+    public class ToggleGameobject : MonoBehaviour, IPointerClickHandler
     {
-        _obj.SetActive(!_obj.activeInHierarchy);
+        [SerializeField] GameObject _obj;
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            _obj.SetActive(!_obj.activeInHierarchy);
+        }
     }
 }
+
