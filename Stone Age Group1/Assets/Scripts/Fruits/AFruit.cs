@@ -21,9 +21,6 @@ namespace Game
         }
 
         public abstract int GetPoints();
-        
-
     }
-
 }
 
