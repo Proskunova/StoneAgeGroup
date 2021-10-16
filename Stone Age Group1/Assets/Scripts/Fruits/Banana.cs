@@ -10,6 +10,11 @@ namespace Game
         {
             return base.points;
         }
+
+        protected override void PrintName()
+        {
+            Debug.Log("Banana");
+        }
     }
 }
 

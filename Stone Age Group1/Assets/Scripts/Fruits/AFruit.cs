@@ -17,10 +17,16 @@ namespace Game
             {
                 collision.gameObject.GetComponent<PlayerEat>().Eat(this);
                 gameObject.SetActive(false);
+
+                PrintName();
             }
         }
 
         public abstract int GetPoints();
+
+        protected virtual void PrintName()
+        {
+        }
     }
 }
 

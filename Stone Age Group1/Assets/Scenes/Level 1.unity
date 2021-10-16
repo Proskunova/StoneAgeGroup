@@ -495,6 +495,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &205809426 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1157183145678720520, guid: 244544ca12f6cf34f8d9be60498805af,
+    type: 3}
+  m_PrefabInstance: {fileID: 1846146997}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &216308892
 GameObject:
   m_ObjectHideFlags: 0
@@ -1450,6 +1456,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4102206943615640720, guid: 38154ec4b9d7c2e4697cf46d1afa16db,
+        type: 3}
+      propertyPath: _sr
+      value: 
+      objectReference: {fileID: 205809426}
     - target: {fileID: 5885263803314318855, guid: 38154ec4b9d7c2e4697cf46d1afa16db,
         type: 3}
       propertyPath: m_Camera
